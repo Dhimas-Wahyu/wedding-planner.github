@@ -1,1 +1,883 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover" />
+  <title>Danil & Iin · Wedding</title>
+  <!-- Font & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #faf7f2;
+      color: #1e1e1e;
+      overflow-x: hidden;
+    }
+    /* elegant serif */
+    .serif {
+      font-family: 'Playfair Display', serif;
+    }
+    .gold {
+      color: #bf9b6e;
+    }
+    .bg-gold {
+      background: #bf9b6e;
+    }
+    .border-gold {
+      border-color: #bf9b6e;
+    }
+    .shadow-soft {
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06), 0 4px 10px rgba(0, 0, 0, 0.03);
+    }
+    .shadow-card {
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.08), 0 8px 24px -8px rgba(0, 0, 0, 0.04);
+    }
+    /* cover overlay */
+    .cover {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #fcf9f5;
+      background-image: radial-gradient(circle at 20% 30%, #f0ebe4 0%, #fcf9f5 70%);
+      padding: 24px;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      text-align: center;
+    }
+    .cover.hide {
+      opacity: 0;
+      transform: scale(1.02);
+      pointer-events: none;
+    }
+    .cover-marble {
+      position: absolute;
+      inset: 0;
+      opacity: 0.2;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 800" opacity="0.15"><path d="M0 0 L400 0 L400 800 L0 800 Z" fill="none"/><path d="M80 120 Q160 60 240 140 T400 200" stroke="%23bf9b6e" fill="none" stroke-width="2"/><circle cx="320" cy="560" r="80" stroke="%23bf9b6e" fill="none" stroke-width="1.5"/><circle cx="80" cy="700" r="40" stroke="%23bf9b6e" fill="none" stroke-width="1"/><path d="M40 400 Q120 340 200 420 T360 460" stroke="%23bf9b6e" fill="none" stroke-width="1.5"/><path d="M280 80 Q340 140 300 220" stroke="%23bf9b6e" fill="none" stroke-width="1.2"/></svg>');
+      background-size: 400px 800px;
+      background-repeat: repeat;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+    .cover-gold-circle {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 2px solid #bf9b6e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: rgba(255, 248, 240, 0.3);
+      box-shadow: 0 0 0 8px rgba(191, 155, 110, 0.08);
+      margin-bottom: 20px;
+    }
+    .cover-gold-circle img {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #e8d5b5;
+    }
+    .cover h1 {
+      font-size: 1.6rem;
+      letter-spacing: 4px;
+      font-weight: 300;
+      color: #1e1e1e;
+      margin-top: 8px;
+    }
+    .cover .sub {
+      font-size: 1rem;
+      letter-spacing: 2px;
+      color: #5a4d3b;
+      margin: 4px 0 2px;
+    }
+    .cover .names {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: #1e1e1e;
+      margin: 6px 0 2px;
+    }
+    .cover .date {
+      font-size: 1rem;
+      color: #7a6a55;
+      letter-spacing: 3px;
+      margin-top: 4px;
+    }
+    .cover .to {
+      font-size: 0.9rem;
+      color: #5a4d3b;
+      letter-spacing: 2px;
+      margin-top: 20px;
+    }
+    .btn-open {
+      margin-top: 28px;
+      background: #bf9b6e;
+      border: none;
+      color: #1e1e1e;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 14px 48px;
+      border-radius: 60px;
+      letter-spacing: 2px;
+      box-shadow: 0 8px 24px rgba(191, 155, 110, 0.25);
+      transition: all 0.2s;
+      cursor: pointer;
+      background: #d9b382;
+      color: #1e1e1e;
+    }
+    .btn-open:active {
+      transform: scale(0.96);
+      box-shadow: 0 4px 12px rgba(191, 155, 110, 0.2);
+    }
+    /* floating bottom nav */
+    .bottom-nav {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 32px);
+      max-width: 400px;
+      background: rgba(255, 248, 240, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 60px;
+      padding: 6px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(191, 155, 110, 0.15);
+      z-index: 999;
+      border: 1px solid rgba(255, 248, 240, 0.4);
+    }
+    .bottom-nav button {
+      background: transparent;
+      border: none;
+      font-size: 1.2rem;
+      color: #7a6a55;
+      padding: 6px 4px;
+      min-width: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      border-radius: 40px;
+      cursor: pointer;
+      position: relative;
+    }
+    .bottom-nav button.active {
+      color: #bf9b6e;
+      background: rgba(191, 155, 110, 0.08);
+    }
+    .bottom-nav button:active {
+      transform: scale(0.88);
+    }
+    .bottom-nav .nav-label {
+      display: none;
+      font-size: 0.55rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: #5a4d3b;
+    }
+    /* main content */
+    .main {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 16px 100px;
+      position: relative;
+    }
+    section {
+      margin: 48px 0 24px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .card {
+      background: rgba(255, 248, 240, 0.6);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 32px;
+      padding: 28px 20px;
+      border: 1px solid rgba(255, 248, 240, 0.8);
+      box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.04);
+      position: relative;
+      overflow: hidden;
+    }
+    .card-gold {
+      border: 1px solid #e8d5b5;
+      background: rgba(255, 248, 240, 0.5);
+    }
+    .ornament-leaf {
+      position: absolute;
+      opacity: 0.15;
+      pointer-events: none;
+      font-size: 3.6rem;
+      color: #bf9b6e;
+    }
+    .section-title {
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+      font-weight: 400;
+      color: #1e1e1e;
+      margin-bottom: 18px;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+    }
+    .section-title span {
+      display: inline-block;
+      border-bottom: 2px solid #bf9b6e;
+      padding-bottom: 6px;
+    }
+    .divider-gold {
+      width: 60px;
+      height: 2px;
+      background: #bf9b6e;
+      margin: 10px auto 16px;
+      border-radius: 4px;
+    }
+    /* hero */
+    .hero-card {
+      text-align: center;
+      padding: 28px 16px 36px;
+      background: rgba(255, 248, 240, 0.4);
+      border: 1px solid #e8d5b5;
+    }
+    .hero-card .circle-frame {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 2px solid #bf9b6e;
+      padding: 5px;
+      margin: 0 auto 16px;
+      background: rgba(255, 248, 240, 0.2);
+    }
+    .hero-card .circle-frame img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #e8d5b5;
+    }
+    .hero-card h2 {
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+    }
+    .hero-card .date-hero {
+      font-size: 1.2rem;
+      color: #5a4d3b;
+      letter-spacing: 2px;
+    }
+    /* countdown */
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 12px 0 4px;
+    }
+    .countdown-item {
+      background: rgba(255, 248, 240, 0.5);
+      backdrop-filter: blur(2px);
+      border-radius: 24px;
+      padding: 12px 4px;
+      text-align: center;
+      border: 1px solid rgba(191, 155, 110, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    }
+    .countdown-item .num {
+      font-size: 1.8rem;
+      font-weight: 600;
+      font-family: 'Playfair Display', serif;
+      color: #1e1e1e;
+      line-height: 1.2;
+    }
+    .countdown-item .label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #7a6a55;
+      margin-top: 2px;
+    }
+    /* couple cards */
+    .couple-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .couple-card {
+      background: rgba(255, 248, 240, 0.4);
+      border-radius: 28px;
+      padding: 20px 16px 20px;
+      border: 1px solid #e8d5b5;
+      text-align: center;
+      backdrop-filter: blur(2px);
+    }
+    .couple-card .photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #bf9b6e;
+      margin: 0 auto 10px;
+    }
+    .couple-card .name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .couple-card .detail {
+      font-size: 0.8rem;
+      color: #5a4d3b;
+      line-height: 1.6;
+      margin-top: 6px;
+    }
+    .ampersand {
+      text-align: center;
+      font-size: 1.6rem;
+      color: #bf9b6e;
+      font-family: 'Playfair Display', serif;
+      margin: -4px 0;
+    }
+    /* event */
+    .event-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .event-card {
+      background: rgba(255, 248, 240, 0.4);
+      border-radius: 28px;
+      padding: 18px 16px 20px;
+      border: 1px solid #e8d5b5;
+    }
+    .event-card h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .event-card .info {
+      font-size: 0.85rem;
+      color: #5a4d3b;
+      line-height: 1.6;
+      margin: 6px 0 8px;
+    }
+    .btn-map {
+      background: transparent;
+      border: 1px solid #bf9b6e;
+      padding: 8px 18px;
+      border-radius: 60px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #1e1e1e;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-map:active {
+      background: #bf9b6e;
+      color: #1e1e1e;
+    }
+    /* gallery masonry */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 18px;
+      border: 1px solid #e8d5b5;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .gallery-grid .wide {
+      grid-column: span 2;
+      aspect-ratio: 2/1;
+    }
+    /* lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(12px);
+      z-index: 99999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .lightbox.show {
+      display: flex;
+    }
+    .lightbox img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 248, 240, 0.1);
+    }
+    .lightbox .close-lb {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      background: rgba(0,0,0,0.3);
+      border-radius: 40px;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+    /* rsvp */
+    .rsvp-form input, .rsvp-form select, .rsvp-form textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 20px;
+      border: 1px solid #e0d6c8;
+      background: rgba(255, 248, 240, 0.4);
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: 0.15s;
+    }
+    .rsvp-form input:focus, .rsvp-form select:focus, .rsvp-form textarea:focus {
+      border-color: #bf9b6e;
+      background: rgba(255, 248, 240, 0.7);
+    }
+    .btn-submit {
+      width: 100%;
+      background: #bf9b6e;
+      border: none;
+      padding: 14px;
+      border-radius: 60px;
+      font-weight: 600;
+      color: #1e1e1e;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .btn-submit:active {
+      transform: scale(0.96);
+    }
+    /* footer */
+    .footer {
+      text-align: center;
+      padding: 40px 16px 20px;
+      background: rgba(255, 248, 240, 0.3);
+      border-radius: 32px;
+      margin-top: 16px;
+      border: 1px solid #e8d5b5;
+    }
+    .footer .heart {
+      color: #bf9b6e;
+    }
+    .quote-ayat {
+      font-size: 1rem;
+      font-style: italic;
+      color: #3a3228;
+      line-height: 1.6;
+      text-align: center;
+      padding: 0 4px;
+    }
+    .quote-ayat small {
+      display: block;
+      font-style: normal;
+      font-size: 0.8rem;
+      color: #7a6a55;
+      margin-top: 8px;
+    }
+    /* hide sections */
+    .hidden-section {
+      display: none !important;
+    }
+    /* scroll btn */
+    .auto-scroll-btn {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      background: rgba(255, 248, 240, 0.8);
+      backdrop-filter: blur(8px);
+      border: 1px solid #e8d5b5;
+      border-radius: 40px;
+      padding: 8px 14px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #1e1e1e;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+      cursor: pointer;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .auto-scroll-btn i {
+      font-size: 0.9rem;
+      color: #bf9b6e;
+    }
+    @media (min-width: 600px) {
+      .bottom-nav {
+        max-width: 480px;
+        padding: 8px 12px;
+      }
+      .bottom-nav button {
+        font-size: 1.3rem;
+        min-width: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- COVER -->
+  <div class="cover" id="cover">
+    <div class="cover-marble"></div>
+    <div class="cover-gold-circle">
+      <img src="https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&w=400" alt="couple placeholder" />
+    </div>
+    <h1>HAPPY WEDDING</h1>
+    <div class="sub">The Wedding Of</div>
+    <div class="names serif">Danil & Iin</div>
+    <div class="date">05 • 12 • 2026</div>
+    <div class="to">Kepada Yth. <span id="guestName">Tamu Undangan</span></div>
+    <button class="btn-open" id="openInvitation">Buka Undangan</button>
+  </div>
 
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <span class="close-lb" id="closeLb">&times;</span>
+    <img id="lbImg" src="" alt="gallery" />
+  </div>
+
+  <!-- AUTO SCROLL -->
+  <div class="auto-scroll-btn" id="autoScrollBtn"><i class="fas fa-play"></i> Auto</div>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav" id="bottomNav">
+    <button data-target="hero" class="active"><i class="fas fa-home"></i></button>
+    <button data-target="couple"><i class="fas fa-heart"></i></button>
+    <button data-target="event"><i class="fas fa-calendar-alt"></i></button>
+    <button data-target="gallery"><i class="fas fa-images"></i></button>
+    <button data-target="rsvp"><i class="fas fa-envelope"></i></button>
+    <button id="musicToggle"><i class="fas fa-music"></i></button>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="main" id="mainContent">
+    <!-- HERO -->
+    <section id="hero" class="visible">
+      <div class="card hero-card">
+        <div class="circle-frame">
+          <img src="https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&w=400" alt="couple" />
+        </div>
+        <h2 class="serif">The Wedding Of</h2>
+        <div style="font-size:2rem;font-weight:600;letter-spacing:1px;">Danil & Iin</div>
+        <div class="date-hero">05 Desember 2026</div>
+        <div style="margin-top:12px;font-size:0.9rem;color:#5a4d3b;line-height:1.5;">Dengan penuh kebahagiaan, kami mengundang Anda untuk hadir dan memberikan doa restu pada hari istimewa kami.</div>
+      </div>
+    </section>
+
+    <!-- COUNTDOWN -->
+    <section id="countdown">
+      <div class="card">
+        <div class="section-title"><span>Menuju Hari Bahagia Kami</span></div>
+        <div class="countdown-grid" id="countdownGrid">
+          <div class="countdown-item"><div class="num" id="days">0</div><div class="label">Hari</div></div>
+          <div class="countdown-item"><div class="num" id="hours">0</div><div class="label">Jam</div></div>
+          <div class="countdown-item"><div class="num" id="minutes">0</div><div class="label">Menit</div></div>
+          <div class="countdown-item"><div class="num" id="seconds">0</div><div class="label">Detik</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUOTE -->
+    <section id="quote">
+      <div class="card" style="background:rgba(255,248,240,0.3);">
+        <div style="font-size:0.9rem;text-align:center;color:#5a4d3b;letter-spacing:1px;">Assalamu’alaikum Warahmatullahi Wabarakatuh</div>
+        <div class="divider-gold"></div>
+        <div class="quote-ayat">“Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu agar kamu merasa tenteram kepadanya.” <small>QS. Ar-Rum: 21</small></div>
+      </div>
+    </section>
+
+    <!-- COUPLE -->
+    <section id="couple">
+      <div class="section-title"><span>Mempelai</span></div>
+      <div class="couple-grid">
+        <div class="couple-card">
+          <img class="photo" src="https://images.pexels.com/photos/1656682/pexels-photo-1656682.jpeg?auto=compress&cs=tinysrgb&w=200" alt="groom" />
+          <div class="name serif">Danil Saputra Hardiansyah</div>
+          <div class="detail">Danil · Putra kedua dari <br/>Dede Haryadi & Alm. Rohayati</div>
+        </div>
+        <div class="ampersand">&</div>
+        <div class="couple-card">
+          <img class="photo" src="https://images.pexels.com/photos/2347240/pexels-photo-2347240.jpeg?auto=compress&cs=tinysrgb&w=200" alt="bride" />
+          <div class="name serif">Iin Nahdiyah</div>
+          <div class="detail">Iin · Putri pertama dari <br/>Supriyadi & Nasuha</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENT -->
+    <section id="event">
+      <div class="section-title"><span>Wedding Event</span></div>
+      <div class="event-grid">
+        <div class="event-card">
+          <h4>Akad Nikah</h4>
+          <div class="info">Sabtu, 05 Desember 2026 · 08.00 WIB — selesai</div>
+          <div class="info" style="margin-bottom:6px;">Jl. Batu Jaya Timur RT.01/05 Kel. Batu Jaya, Kec. Batu Ceper</div>
+          <button class="btn-map" onclick="window.open('https://maps.app.goo.gl/vuKkZTzXFCFuefqr9?g_st=ic','_blank')"><i class="fas fa-map-pin"></i> Lihat Lokasi</button>
+        </div>
+        <div class="event-card">
+          <h4>Resepsi</h4>
+          <div class="info">Sabtu, 05 Desember 2026 · 08.00 WIB — selesai</div>
+          <div class="info" style="margin-bottom:6px;">Jl. Batu Jaya Timur RT.01/05 Kel. Batu Jaya, Kec. Batu Ceper</div>
+          <button class="btn-map" onclick="window.open('https://maps.app.goo.gl/vuKkZTzXFCFuefqr9?g_st=ic','_blank')"><i class="fas fa-map-pin"></i> Lihat Lokasi</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="section-title"><span>Gallery</span></div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+    <!-- RSVP -->
+    <section id="rsvp">
+      <div class="card">
+        <div class="section-title"><span>RSVP & Ucapan</span></div>
+        <form class="rsvp-form" id="rsvpForm">
+          <input type="text" placeholder="Nama Anda" required />
+          <select required><option value="">Konfirmasi Kehadiran</option><option>Hadir</option><option>Tidak Hadir</option></select>
+          <textarea rows="2" placeholder="Ucapan & Doa untuk mempelai..."></textarea>
+          <button class="btn-submit" type="submit">Kirim</button>
+        </form>
+        <div style="margin-top:20px;text-align:center;font-size:0.8rem;color:#7a6a55;">Ucapan & Doa dari tamu</div>
+        <div id="dummyMessages" style="margin-top:12px;display:flex;flex-direction:column;gap:8px;"></div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="serif" style="font-size:1.6rem;letter-spacing:2px;">Danil & Iin</div>
+      <div style="color:#7a6a55;font-size:0.9rem;margin:4px 0 8px;">05 • 12 • 2026</div>
+      <div style="color:#5a4d3b;font-size:0.8rem;line-height:1.5;max-width:300px;margin:0 auto;">Terima kasih atas doa dan kehadiran Anda di hari bahagia kami.</div>
+      <div style="margin-top:16px;font-size:0.7rem;color:#7a6a55;"><span class="heart">♥</span> Made with love</div>
+    </footer>
+  </div>
+
+  <script>
+    (function() {
+      // DATA CONFIG
+      const weddingData = {
+        groom: { name: "Danil Saputra Hardiansyah", nickname: "Danil", father: "Dede Haryadi", mother: "Alm. Rohayati", birthOrder: 2 },
+        bride: { name: "Iin Nahdiyah", nickname: "Iin", father: "Supriyadi", mother: "Nasuha", birthOrder: 1 },
+        wedding: { date: "2026-12-05", time: "08:00" },
+        location: { name: "Rumah", address: "Jl. Batu Jaya Timur RT.01/05 Kel. Batu Jaya Kec. Batu Ceper", maps: "https://maps.app.goo.gl/vuKkZTzXFCFuefqr9?g_st=ic" },
+        gallery: [
+          { url: "https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&w=400", alt: "couple" },
+          { url: "https://images.pexels.com/photos/2714033/pexels-photo-2714033.jpeg?auto=compress&cs=tinysrgb&w=400", alt: "bride" },
+          { url: "https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=400", alt: "groom" },
+          { url: "https://images.pexels.com/photos/2576783/pexels-photo-2576783.jpeg?auto=compress&cs=tinysrgb&w=400", alt: "rings" },
+          { url: "https://images.pexels.com/photos/1940483/pexels-photo-1940483.jpeg?auto=compress&cs=tinysrgb&w=400", alt: "flowers" },
+          { url: "https://images.pexels.com/photos/1576446/pexels-photo-1576446.jpeg?auto=compress&cs=tinysrgb&w=400", alt: "ceremony" },
+          { url: "https://images.pexels.com/photos/3014856/pexels-photo-3014856.jpeg?auto=compress&cs=tinysrgb&w=400", alt: "couple2" },
+          { url: "https://images.pexels.com/photos/2263754/pexels-photo-2263754.jpeg?auto=compress&cs=tinysrgb&w=400", alt: "wedding" },
+        ],
+        loveStory: [],
+        timeline: [],
+        music: { enabled: false, url: "" },
+        dressCode: { enabled: false },
+        weddingGift: { enabled: false }
+      };
+
+      // Gallery render
+      const galleryGrid = document.getElementById('galleryGrid');
+      const imgs = weddingData.gallery;
+      imgs.forEach((img, i) => {
+        const div = document.createElement('div');
+        if (i % 3 === 0) div.className = 'wide';
+        const el = document.createElement('img');
+        el.src = img.url;
+        el.alt = img.alt;
+        el.loading = 'lazy';
+        el.addEventListener('click', () => openLightbox(img.url));
+        div.appendChild(el);
+        galleryGrid.appendChild(div);
+      });
+
+      // Lightbox
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lbImg');
+      function openLightbox(src) { lbImg.src = src; lb.classList.add('show'); }
+      document.getElementById('closeLb').addEventListener('click', () => lb.classList.remove('show'));
+      lb.addEventListener('click', (e) => { if (e.target === lb) lb.classList.remove('show'); });
+
+      // Countdown
+      const targetDate = new Date('2026-12-05T08:00:00').getTime();
+      function updateCountdown() {
+        const now = Date.now();
+        let diff = targetDate - now;
+        if (diff < 0) diff = 0;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+        document.getElementById('days').textContent = days;
+        document.getElementById('hours').textContent = hours;
+        document.getElementById('minutes').textContent = minutes;
+        document.getElementById('seconds').textContent = seconds;
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      // Cover
+      const cover = document.getElementById('cover');
+      const openBtn = document.getElementById('openInvitation');
+      const mainContent = document.getElementById('mainContent');
+      let musicPlaying = false;
+      let audioCtx = null;
+
+      openBtn.addEventListener('click', () => {
+        cover.classList.add('hide');
+        // trigger audio (dummy)
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        musicPlaying = true;
+        document.getElementById('musicToggle').innerHTML = '<i class="fas fa-music"></i>';
+        // play silent oscillator as "music" indicator
+        try {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          gain.gain.value = 0.01;
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start();
+          osc.stop(0.5);
+        } catch(e) {}
+        // show sections
+        document.querySelectorAll('section').forEach(s => s.classList.add('visible'));
+        // update guest name from URL
+        const params = new URLSearchParams(window.location.search);
+        const guest = params.get('to') || 'Tamu Undangan';
+        document.getElementById('guestName').textContent = guest;
+      });
+
+      // Bottom nav scroll
+      const navBtns = document.querySelectorAll('.bottom-nav button[data-target]');
+      navBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = document.getElementById(btn.dataset.target);
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          navBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        });
+      });
+
+      // Music toggle
+      document.getElementById('musicToggle').addEventListener('click', () => {
+        musicPlaying = !musicPlaying;
+        const icon = document.getElementById('musicToggle').querySelector('i');
+        if (musicPlaying) {
+          icon.className = 'fas fa-music';
+          if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        } else {
+          icon.className = 'fas fa-music-slash';
+        }
+      });
+
+      // Auto scroll
+      let autoScrollActive = false;
+      let scrollInterval = null;
+      const autoBtn = document.getElementById('autoScrollBtn');
+      autoBtn.addEventListener('click', () => {
+        autoScrollActive = !autoScrollActive;
+        if (autoScrollActive) {
+          autoBtn.innerHTML = '<i class="fas fa-pause"></i> Auto';
+          scrollInterval = setInterval(() => {
+            window.scrollBy({ top: 6, behavior: 'smooth' });
+          }, 80);
+        } else {
+          autoBtn.innerHTML = '<i class="fas fa-play"></i> Auto';
+          clearInterval(scrollInterval);
+        }
+      });
+
+      // RSVP dummy
+      document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Terima kasih atas konfirmasi dan doanya!');
+        this.reset();
+      });
+
+      // Dummy messages
+      const dummyMessages = [
+        { name: 'Ahmad Fauzi', msg: 'Semoga menjadi keluarga yang sakinah mawaddah warahmah.' },
+        { name: 'Siti Rahma', msg: 'Selamat ya Danil & Iin, semoga bahagia selalu.' },
+        { name: 'Budi Santoso', msg: 'Doa terbaik untuk kalian berdua.' }
+      ];
+      const msgContainer = document.getElementById('dummyMessages');
+      dummyMessages.forEach(m => {
+        const div = document.createElement('div');
+        div.style.cssText = 'background:rgba(255,248,240,0.3);border-radius:20px;padding:12px 16px;border:1px solid #e8d5b5;';
+        div.innerHTML = `<strong style="font-size:0.85rem;">${m.name}</strong><div style="font-size:0.8rem;color:#5a4d3b;margin-top:2px;">“${m.msg}”</div>`;
+        msgContainer.appendChild(div);
+      });
+
+      // IntersectionObserver for sections
+      const sections = document.querySelectorAll('section');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      sections.forEach(s => observer.observe(s));
+
+      // Nav active on scroll
+      const sectionMap = ['hero','countdown','quote','couple','event','gallery','rsvp'];
+      window.addEventListener('scroll', () => {
+        let activeId = 'hero';
+        for (const id of sectionMap) {
+          const el = document.getElementById(id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 120) activeId = id;
+          }
+        }
+        navBtns.forEach(b => {
+          b.classList.toggle('active', b.dataset.target === activeId);
+        });
+      });
+
+      // initial visible
+      document.getElementById('hero').classList.add('visible');
+    })();
+  </script>
+</body>
+</html>
